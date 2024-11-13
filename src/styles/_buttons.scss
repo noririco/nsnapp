@@ -1,0 +1,112 @@
+.btn-flat {
+  background: transparent;
+  border: 2px solid #007BFF;
+  color: #007BFF;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn-flat:hover {
+  background-color: #007BFF;
+  color: white;
+}
+.btn-flat:focus {
+  outline: 3px solid #FF9800; /* Focus indicator */
+}
+
+.btn-3d {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-3d:active {
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(2px);
+}
+.btn-3d:focus {
+  outline: 3px solid #FF9800; /* Focus indicator */
+}
+
+.btn-gradient {
+  background: linear-gradient(45deg, #6a11cb, #2575fc);
+  border: none;
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(45deg, #2575fc, #6a11cb);
+  transform: scale(1.05); /* Subtle zoom effect */
+}
+
+.btn-gradient:focus {
+  outline: 3px solid #FF9800; /* Focus indicator */
+}
+
+/* Carbon texture background */
+@keyframes carbonTexture {
+  0% { background-position: 0 0; }
+  100% { background-position: 10px 10px; }
+}
+
+.btn-carbon {
+  display: inline-block;
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  border: 2px solid #333;
+  border-radius: 10px;
+  background: #111;
+  background-image: 
+    linear-gradient(45deg, rgba(0, 0, 0, 0.4) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(0, 0, 0, 0.4) 25%, transparent 25%),
+    linear-gradient(45deg, rgba(0, 0, 0, 0.2) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(0, 0, 0, 0.2) 25%, transparent 25%);
+  background-size: 8px 8px;
+  background-position: 0 0, 4px 4px, 4px -4px, -4px 4px;
+  animation: carbonTexture 0.8s linear infinite;
+  transition: background 0.3s, box-shadow 0.3s;
+  
+  /* Deep shadows for the button */
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.3), 
+    0 6px 20px rgba(0, 0, 0, 0.2),
+    0 10px 30px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  outline: none;
+}
+
+.btn-carbon:hover {
+  background: #222;
+  box-shadow: 
+    0 6px 10px rgba(0, 0, 0, 0.5),
+    0 10px 30px rgba(0, 0, 0, 0.3),
+    0 15px 40px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.btn-carbon:active {
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.4), 
+    0 4px 10px rgba(0, 0, 0, 0.3),
+    0 8px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(2px);
+}

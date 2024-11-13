@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+/* SCSS is still very useful for more advanced use cases like logic, nesting, 
+   reusability, and code organization, especially in large applications.
+   CSS Variables are great for runtime theming and dynamic styling, 
+   but they don't provide the same level of power as SCSS 
+   when it comes to build-time logic and advanced features like functions, loops, and inheritance. */
+
+@import 'reset';
+@import 'buttons';
+
+button {
+   // @extend .btn-flat;
+   // @extend .btn-3d;
+   // @extend .btn-gradient;
+   @extend .btn-carbon;
+}

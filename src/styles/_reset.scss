@@ -1,0 +1,83 @@
+// 1. Universal reset for all elements
+// Remove margin, padding, and set box-sizing to border-box
+// This ensures consistent sizing and layout across all elements
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// 2. Set base font size and line-height
+// This standardizes font size to 16px (100%) and sets a comfortable line-height for readability
+html {
+  font-size: 100%; // 16px by default
+  line-height: 1.5; // Better line height for readability
+}
+
+// 3. Remove list styles for unordered (ul) and ordered (ol) lists
+// This removes bullets and numbers, so we can add custom list styles later if needed
+ul,
+ol {
+  list-style: none;  // No default bullets or numbering
+  padding-left: 0;  // Remove left padding
+}
+
+// 4. Remove default quotes from blockquotes and inline quotes
+// Ensures no browser-specific quotes are applied by default
+blockquote,
+q {
+  quotes: none;
+}
+
+// 5. Normalize table styling
+// This ensures tables have a clean appearance and collapse borders as expected
+table {
+  border-collapse: collapse; // Collapses table borders to a single border
+  border-spacing: 0; // Removes space between table cells
+}
+
+// 6. Standardize table header and cell styles
+// Remove padding from table headers and cells and align text to the left
+th,
+td {
+  text-align: left; // Align text to the left for consistency
+  padding: 0; // No padding by default
+}
+
+// 7. Reset form elements' default styling
+// Removes browser-specific borders, background, and padding for inputs, textareas, etc.
+input,
+textarea,
+button,
+select {
+  border: none; // Remove borders for a clean slate
+  outline: none; // Remove outline to prevent default browser focus outline
+  font: inherit; // Inherit font family from the parent for consistency
+  color: inherit; // Inherit text color from the parent
+  background: none; // Remove default background styling
+  padding: 0; // Remove default padding
+}
+
+// 8. Reset link (anchor) styles
+// This removes the default underline and sets the link color to inherit from the parent
+a {
+  text-decoration: none; // Remove underline by default
+  color: inherit; // Inherit color from the parent, so links blend in with the design
+}
+
+// 9. Prevent image overflow
+// Ensures images never overflow their container and maintain aspect ratio
+img {
+  max-width: 100%; // Image can expand up to the width of its container, but not beyond
+  height: auto; // Maintain the image's aspect ratio
+}
+
+// 10. Set default background and text color for the body
+// This ensures a clean, consistent appearance with a white background and dark text
+body {
+  background-color: #fff; // Set default background color to white
+  color: #333; // Set text color to a dark gray for better readability
+  font-family: Arial, sans-serif; // Set a default sans-serif font for body text
+}

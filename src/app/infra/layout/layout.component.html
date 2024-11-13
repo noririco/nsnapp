@@ -1,0 +1,14 @@
+<header>
+  <nav>
+    <button routerLink="/home" routerLinkActive="active">home</button>
+    <button routerLink="/gems" routerLinkActive="active">Gems</button> 
+    <button (click)="authStore.logout()">Logout</button>
+  </nav>
+</header>
+<main>
+  <!-- <app-loader *ngIf="loading"></app-loader> -->
+  <!-- <app-loader-v2 *ngIf="loading"></app-loader-v2> -->
+  <app-loader-v3 *ngIf="loading"></app-loader-v3>
+  <router-outlet></router-outlet>
+</main>
+<footer>copyrights nsnsolutions</footer>

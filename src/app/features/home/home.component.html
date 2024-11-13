@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-12">
+    <h1>Hello, Angular!</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Counter</h5>
+        <div class="card-text">
+          <p>Current count: {{ simpleStore.select("count") }}</p>
+          <p>Name: {{ simpleStore.select("details").name }}</p>
+          <button (click)="simpleStore.dispatch('increment')">Increment</button>
+          <button (click)="simpleStore.dispatch('decrement')">Decrement</button>
+          <button (click)="simpleStore.dispatch('incrementBy', 5)">Increment by 5</button>
+          <button (click)="simpleStore.dispatch('setName', 'nisan')">Set Name</button>
+          <button (click)="simpleStore.dispatch('reset')">Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
