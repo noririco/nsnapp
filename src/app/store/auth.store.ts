@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { patchState, signalStore, withHooks, withMethods, withState } from '@ngrx/signals';
 import { firstValueFrom } from 'rxjs';
 import { setError, setFulfilled, setPending, withRequestStatus } from './utils/request-status.feature';
+import { BASE_API_URL } from '../infra/utils/constants';
 
 /**
  * NOTE: Session Storage vs Local Storage
@@ -52,7 +53,7 @@ export const AuthStore = signalStore(
           patchState(store, setPending());
           // Mock 3 second delay to see loading state
           await new Promise((resolve) => setTimeout(resolve, 3000));
-          const { role, token } = await firstValueFrom(http.post<{ token: string; role: 'Admin' | 'User' }>('/api/auth/login', credentials));
+          const { role, token } = await firstValueFrom(http.post<{ token: string; role: 'Admin' | 'User' }>(`${BASE_API_URL}/auth/login`, credentials));
 
           if (token) {
             patchState(store, { isAuthenticated: true, role, token });
@@ -67,7 +68,7 @@ export const AuthStore = signalStore(
       },
       async logout() {
         // Clear the state and remove from localStorage
-        await firstValueFrom(http.post<{}>('/api/auth/logout', {}));
+        await firstValueFrom(http.post<{}>(`${BASE_API_URL}/auth/logout`, {}));
         patchState(store, { isAuthenticated: false, role: null, token: null });
         localStorage.removeItem('SESSION_T');
         router.navigate(['login']);

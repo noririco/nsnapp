@@ -4,6 +4,7 @@ import { patchState, signalStore, withComputed, withHooks, withMethods, withStat
 import { firstValueFrom } from 'rxjs';
 import { setError, setFulfilled, setPending, withRequestStatus } from './utils/request-status.feature';
 import { Gem } from '../features/gems/gems.model';
+import { BASE_API_URL } from '../infra/utils/constants';
 
 type GemsState = {
   gems: Array<Gem>;
@@ -29,7 +30,7 @@ export const GemsStore = signalStore(
           patchState(store, setPending());
           // Mock 3 second delay to see loading state
           await new Promise((resolve) => setTimeout(resolve, 3000));
-          const gems = await firstValueFrom(http.get<Array<Gem>>('/api/gems'));
+          const gems = await firstValueFrom(http.get<Array<Gem>>(`${BASE_API_URL}/gems`));
           patchState(store, { gems });
           patchState(store, setFulfilled());
           return gems;
@@ -44,7 +45,7 @@ export const GemsStore = signalStore(
           patchState(store, setPending());
           // Mock 3 second delay to see loading state
           await new Promise((resolve) => setTimeout(resolve, 3000));
-          const gems = await firstValueFrom(http.post<Array<Gem>>('/api/gems', gem));
+          const gems = await firstValueFrom(http.post<Array<Gem>>(`${BASE_API_URL}/gem`, gem));
           patchState(store, { gems });
           patchState(store, setFulfilled());
         } catch (error) {
@@ -57,7 +58,7 @@ export const GemsStore = signalStore(
           patchState(store, setPending());
           // Mock 3 second delay to see loading state
           await new Promise((resolve) => setTimeout(resolve, 3000));
-          const gems = await firstValueFrom(http.put<Array<Gem>>('/api/gems', gem));
+          const gems = await firstValueFrom(http.put<Array<Gem>>(`${BASE_API_URL}/gems`, gem));
           patchState(store, { gems });
           patchState(store, setFulfilled());
         } catch (error) {
@@ -70,7 +71,7 @@ export const GemsStore = signalStore(
           patchState(store, setPending());
           // Mock 3 second delay to see loading state
           await new Promise((resolve) => setTimeout(resolve, 3000));
-          const gems = await firstValueFrom(http.delete<Array<Gem>>(`/api/gems/${id}`));
+          const gems = await firstValueFrom(http.delete<Array<Gem>>(`${BASE_API_URL}/gems/${id}`));
           patchState(store, { gems });
           patchState(store, setFulfilled());
         } catch (error) {

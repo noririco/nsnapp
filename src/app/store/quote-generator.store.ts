@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { computed, inject } from '@angular/core';
 import { patchState, signalStore, withComputed, withHooks, withMethods, withState } from '@ngrx/signals';
 import { firstValueFrom } from 'rxjs';
+import { BASE_API_URL } from '../infra/utils/constants';
 
 type Quote = string;
 
@@ -28,7 +29,7 @@ export const QuoteGeneratorStore = signalStore(
       async generateQuote() {
         try {
           console.log('Generating quote...');
-          const quotes = await firstValueFrom(http.post<string[]>('/api/openai/completions', {}));
+          const quotes = await firstValueFrom(http.post<string[]>(`${BASE_API_URL}/openai/completions`, {}));
           patchState(store, { quotes });
         } catch (error) {
           console.error('Failed to fetch quote', error);
