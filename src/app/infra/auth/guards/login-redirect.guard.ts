@@ -7,6 +7,7 @@ export const loginRedirectGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
 
   if (authStore.isAuthenticated()) {
+    console.log('[loginRedirectGuard] User is authenticated, redirecting to home page');
     // Redirect to a default route if already logged in
     router.navigate(['/home']);
     return false;

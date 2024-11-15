@@ -12,6 +12,11 @@ export const routes: Routes = [
     canActivate: [authGuard], // Guard applied to the layout, affecting child routes
     children: [
       {
+        path: '',
+        pathMatch: 'full', // Default route inside authenticated layout
+        redirectTo: 'home', // Redirect to home for authenticated users
+      },
+      {
         path: 'home',
         loadComponent: () => import('./features/home/home.component').then((m) => m.HomeComponent),
       },

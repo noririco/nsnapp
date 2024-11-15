@@ -7,10 +7,11 @@ export const authGuard: CanActivateFn = (route, state) => {
   const authStore = inject(AuthStore);
 
   if (authStore.isAuthenticated()) {
+    console.log('[authGuard] User is authenticated');
     return true;
   }
 
-  console.warn(`User not authenticated to see ${router.getCurrentNavigation()?.finalUrl}, navigating to login page.`);
+  console.warn(`[authGuard] User not authenticated to see ${router.getCurrentNavigation()?.finalUrl}, navigating to login page.`);
   router.navigate(['/login']);
   return false;
 };
