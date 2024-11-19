@@ -27,6 +27,7 @@ export const GemsStore = signalStore(
     return {
       async getGems() {
         try {
+          console.log('[GemsStore] getGems');
           patchState(store, setPending());
           // Mock 3 second delay to see loading state
           await new Promise((resolve) => setTimeout(resolve, 3000));
@@ -35,13 +36,14 @@ export const GemsStore = signalStore(
           patchState(store, setFulfilled());
           return gems;
         } catch (error) {
-          patchState(store, setError('Failed to fetch gems'));
-          console.error('Failed to fetch gems', error);
+          patchState(store, setError('[GemsStore] Failed to fetch gems'));
+          console.error('[GemsStore] Failed to fetch gems', error);
           return [];
         }
       },
       async addGem(gem: Gem) {
         try {
+          console.log('[GemsStore] addGem');
           patchState(store, setPending());
           // Mock 3 second delay to see loading state
           await new Promise((resolve) => setTimeout(resolve, 3000));
@@ -50,11 +52,12 @@ export const GemsStore = signalStore(
           patchState(store, setFulfilled());
         } catch (error) {
           patchState(store, setError('Failed to add gem'));
-          console.error('Failed to add gem', error);
+          console.error('[GemsStore] Failed to add gem', error);
         }
       },
       async updateGem(gem: Gem) {
         try {
+          console.log('[GemsStore] updateGem');
           patchState(store, setPending());
           // Mock 3 second delay to see loading state
           await new Promise((resolve) => setTimeout(resolve, 3000));
@@ -63,11 +66,12 @@ export const GemsStore = signalStore(
           patchState(store, setFulfilled());
         } catch (error) {
           patchState(store, setError('Failed to update gem'));
-          console.error('Failed to update gem', error);
+          console.error('[GemsStore] Failed to update gem', error);
         }
       },
       async deleteGem(id: string) {
         try {
+          console.log(`[GemsStore] deleteGem ${id}`);
           patchState(store, setPending());
           // Mock 3 second delay to see loading state
           await new Promise((resolve) => setTimeout(resolve, 3000));
@@ -76,14 +80,18 @@ export const GemsStore = signalStore(
           patchState(store, setFulfilled());
         } catch (error) {
           patchState(store, setError('Failed to delete gem'));
-          console.error('Failed to delete gem', error);
+          console.error('[GemsStore] Failed to delete gem', error);
         }
       },
     };
   }),
   withHooks({
     onInit(store) {
-      store.getGems();
+      console.log('onInit');
+
+      if (!store.count()) {
+        store.getGems();
+      }
     },
   })
 );

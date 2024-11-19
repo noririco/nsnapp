@@ -50,6 +50,7 @@ export const AuthStore = signalStore(
     return {
       async login(credentials: { username: string; password: string }) {
         try {
+          console.log('[AuthStore] login');
           patchState(store, setPending());
           // Mock 3 second delay to see loading state
           await new Promise((resolve) => setTimeout(resolve, 3000));
@@ -63,10 +64,11 @@ export const AuthStore = signalStore(
           }
         } catch (error) {
           patchState(store, setError('Login failed'));
-          console.error('Login failed', error);
+          console.error('[AuthStore] Login failed', error);
         }
       },
       async logout() {
+        console.log('[AuthStore] logout');
         // Clear the state and remove from localStorage
         await firstValueFrom(http.post<{}>(`${BASE_API_URL}/auth/logout`, {}));
         patchState(store, { isAuthenticated: false, role: null, token: null });
@@ -74,6 +76,7 @@ export const AuthStore = signalStore(
         router.navigate(['login']);
       },
       checkAuthentication() {
+        console.log('[AuthStore] checkAuthentication');
         const { isAuthenticated, role, token } = JSON.parse(localStorage.getItem('SESSION_T') || '{}');
         if (isAuthenticated) {
           patchState(store, { isAuthenticated, role, token });
@@ -83,6 +86,7 @@ export const AuthStore = signalStore(
   }),
   withHooks({
     onInit(store) {
+      console.log('[AuthStore] onInit');
       // Check if the user is authenticated in localStorage
       store.checkAuthentication();
     },

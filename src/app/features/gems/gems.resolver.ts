@@ -4,7 +4,7 @@ import { ResolveFn } from '@angular/router';
 import { Gem } from './gems.model';
 
 export const gemsResolveFn: ResolveFn<Gem[]> = (route, state) => {
-  console.log(`Resolved gems`);
+  console.log(`[gemsResolveFn] Resolving gems`);
   const gemsStore = inject(GemsStore);
-  return gemsStore.gems();
+  return gemsStore.getGems();
 };
