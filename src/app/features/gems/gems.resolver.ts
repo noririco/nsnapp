@@ -6,5 +6,5 @@ import { Gem } from './gems.model';
 export const gemsResolveFn: ResolveFn<Gem[]> = (route, state) => {
   console.log(`Resolved gems`);
   const gemsStore = inject(GemsStore);
-  return gemsStore.getGems();
+  return gemsStore.gems();
 };
