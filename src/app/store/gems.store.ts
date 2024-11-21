@@ -88,10 +88,9 @@ export const GemsStore = signalStore(
   withHooks({
     onInit(store) {
       console.log('onInit');
-
-      if (!store.count()) {
-        store.getGems();
-      }
+    },
+    onDestroy() {
+      console.log('onDestroy');
     },
   })
 );
