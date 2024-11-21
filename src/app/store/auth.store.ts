@@ -71,7 +71,7 @@ export const AuthStore = signalStore(
        * Logout from the server and clear the localStorage
        * @param shallow { shallow: boolean } - if true will not send a logout request to the server
        */
-      async logout({ shallow }: { shallow: boolean }) {
+      async logout({ shallow }: { shallow: boolean } = { shallow: false }) {
         console.log('[AuthStore] logout');
         if (!shallow) {
           await firstValueFrom(http.post<{}>(`${BASE_API_URL}/auth/logout`, {}));
