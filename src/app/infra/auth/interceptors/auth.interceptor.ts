@@ -21,6 +21,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     catchError((error) => {
       // Redirect to login if token is missing or if unauthorized error is returned
       if (!token || error.status === 401) {
+        authStore.logout({ shallow: true });
         router.navigate(['/login']);
       }
       return throwError(() => error);

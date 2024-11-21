@@ -67,12 +67,18 @@ export const AuthStore = signalStore(
           console.error('[AuthStore] Login failed', error);
         }
       },
-      async logout() {
+      /**
+       * Logout from the server and clear the localStorage
+       * @param shallow { shallow: boolean } - if true will not send a logout request to the server
+       */
+      async logout({ shallow }: { shallow: boolean }) {
         console.log('[AuthStore] logout');
-        // Clear the state and remove from localStorage
-        await firstValueFrom(http.post<{}>(`${BASE_API_URL}/auth/logout`, {}));
-        patchState(store, { isAuthenticated: false, role: null, token: null });
+        if (!shallow) {
+          await firstValueFrom(http.post<{}>(`${BASE_API_URL}/auth/logout`, {}));
+        }
+
         localStorage.removeItem('SESSION_T');
+        patchState(store, { isAuthenticated: false, role: null, token: null });
         router.navigate(['login']);
       },
       checkAuthentication() {
