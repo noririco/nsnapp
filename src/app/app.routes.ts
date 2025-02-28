@@ -25,6 +25,10 @@ export const routes: Routes = [
         loadComponent: () => import('./features/gems/gems.component').then((m) => m.GemsComponent),
         resolve: { data: gemsResolveFn },
       },
+      {
+        path: 'd3pg',
+        loadComponent: () => import('./features/d3pg/d3pg.component').then((m) => m.D3pgComponent),
+      },
       // {
       //   path: 'about',
       //   loadComponent: () => import('./features/about/about.component').then(m => m.AboutComponent)

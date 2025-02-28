@@ -47,7 +47,7 @@ export const GemsStore = signalStore(
           patchState(store, setPending());
           // Mock 3 second delay to see loading state
           await new Promise((resolve) => setTimeout(resolve, 3000));
-          const gems = await firstValueFrom(http.post<Array<Gem>>(`${BASE_API_URL}/gem`, gem));
+          const gems = await firstValueFrom(http.post<Array<Gem>>(`${BASE_API_URL}/gems`, gem));
           patchState(store, { gems });
           patchState(store, setFulfilled());
         } catch (error) {
@@ -87,10 +87,10 @@ export const GemsStore = signalStore(
   }),
   withHooks({
     onInit(store) {
-      console.log('onInit');
+      console.log('[GemsStore] onInit');
     },
     onDestroy() {
-      console.log('onDestroy');
+      console.log('[GemsStore] onDestroy');
     },
   })
 );
